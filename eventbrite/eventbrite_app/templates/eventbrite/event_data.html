@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+{% block title %}Edit Event{% endblock title %}
+{% block breadcrumb %}Edit Event{% endblock breadcrumb %}
+{% load crispy_forms_tags %}
+
+{% block extrahead %}
+    <!-- Mapbox Configuration -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+
+    {% load mapbox_location_field_tags %}
+    {% location_field_includes %}
+    {% include_jquery %}
+    <!-- Mapbox Configuration -->
+{% endblock extrahead %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h5>Event {{event.name}} Data</h5>
+                        </div>
+                        <div class="col-md-2">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                  <b><p>Event :- {{event.name}}</p>
+                   <p>Coordinator of event :- {{event.coordinator}}</p>
+                   <p>Event Description :- {{event.description}}</p>
+                   <p>Event Status :- {{event.status}}</p>
+                   <p>Total Money of event :- {{event.totalMoney}}</p>
+                   <p>Apply as an Volunteer :- <a class="btn btn-success" href="{% url 'volunteer' %}">Apply</a></p>
+                   <p>Apply as an Participant :- <a class="btn btn-success" href="{% url 'participant' %}">Apply</a></p></b>
+                   <h3>Sub Events :-</h3>
+                   {% for s in subevents %}
+                   <b><p>{{s.name}}</p></b>
+                   {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2FqaWIxMDY2IiwiYSI6ImNrYnJqb2x6NDAyN2cyc3BuenoxemNjdmEifQ.uWDYuTOqXB9KMPBmeDxORw';
+        var map = new mapboxgl.Map({
+        container: 'location-field-map',
+        style: 'mapbox://styles/mapbox/streets-v11'
+        });
+    </script>
+{% endblock content %}
