@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eventbrite_app',
+    'dark',
+    # 'django_bootstrap_calendar',
 
     # 3rd party apps
     'crispy_forms',

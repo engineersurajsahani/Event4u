@@ -7,11 +7,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
 from .models import Coordinator,Proposal,Event,SubCoordinator,SubEvent,Volunteer,Participant,Payment,Notification,Memories
-from .forms import VolunteerForm,ParticipantForm
+from .forms import VolunteerForm,ParticipantForm,CustomUserForm
 
 
 def home(request):
-    return render(request,'eventbrite/home.html')
+    return render(request,'home/home.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -24,7 +24,7 @@ def login_view(request):
         else:
             error_message = "Invalid login credentials. Please try again."
             return render(request, 'login.html', {'error_message': error_message})
-    return render(request, 'eventbrite/login/login.html')
+    return render(request, 'eventbrite/login.html')
 
 @login_required(login_url='login')
 def logout_view(request):
@@ -33,17 +33,18 @@ def logout_view(request):
 
 def register_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
+            # username = form.cleaned_data.get('username')
+            # password = form.cleaned_data.get('password1')
+            # user = authenticate(username=username, password=password)
+            # login(request, user)
+            print("Registration Successfull!!!")
             return redirect('dashboard')
     else:
-        form = UserCreationForm()
-    return render(request, 'eventbrite/register.html', {'form': form})
+        form = CustomUserForm()
+    return render(request, 'register/register.html', {'form': form})
 
 @login_required(login_url='login')
 def dashboard(request):

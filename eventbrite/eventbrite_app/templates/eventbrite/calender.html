@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block title %}Add Event Member{% endblock title %}
+{% block breadcrumb %}Add Event Member{% endblock breadcrumb %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+   
+Calendar controls :
+
+{% bootstrap_controls 'optional-css-classes' %}
+
+Calendar:
+
+{% bootstrap_calendar 'optional-css-classes' %}
+
+{% endblock content %}
