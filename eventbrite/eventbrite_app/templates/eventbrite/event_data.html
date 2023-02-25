@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
-{% block title %}Edit Event{% endblock title %}
-{% block breadcrumb %}Edit Event{% endblock breadcrumb %}
+{% block title %}Event4u{% endblock title %}
+{% block breadcrumb %}Event4u{% endblock breadcrumb %}
 {% load crispy_forms_tags %}
 
 {% block extrahead %}
@@ -29,17 +29,171 @@
                     </div>
                 </div>
                 <div class="card-body">
-                  <b><p>Event :- {{event.name}}</p>
+                  <!-- <b><p>Event :- {{event.name}}</p>
                    <p>Coordinator of event :- {{event.coordinator}}</p>
                    <p>Event Description :- {{event.description}}</p>
                    <p>Event Status :- {{event.status}}</p>
-                   <p>Total Money of event :- {{event.totalMoney}}</p>
-                   <p>Apply as an Volunteer :- <a class="btn btn-success" href="{% url 'volunteer' %}">Apply</a></p>
-                   <p>Apply as an Participant :- <a class="btn btn-success" href="{% url 'participant' %}">Apply</a></p></b>
-                   <h3>Sub Events :-</h3>
+                   <p>Total Money of event :- {{event.totalMoney}}</p></b> -->
+                   <!-- <p>Volunteer :- <a class="btn btn-success" href="{% url 'volunteer' %}">Fill Form</a></p>
+                   <p>Participant :- <a class="btn btn-success" href="{% url 'participant' %}">Fill Form</a></p>
+                   <p>Audience :- <a class="btn btn-success" href="{% url 'audience' %}">Fill Form</a></p>
+                   <p>Payment :- <a class="btn btn-success" href="{% url 'payment' %}">Pay</a></p> -->
+                   <!-- <p>UPI ID For Payment :- {{event.upi}}</p> -->
+                   <!-- <h3>Sub Events :-</h3>
                    {% for s in subevents %}
                    <b><p>{{s.name}}</p></b>
-                   {% endfor %}
+                   {% endfor %} -->
+                   <!-- <p>Get Your Pass :- <a class="btn btn-success" href="{% url 'generate-pass' event.id %}">Get Your Pass</a></p> -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5>Event Releted Some Information</h5>
+                                    </div>
+            
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-borderless datatable dataTable no-footer"
+                                    id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info"
+                                    style="border-collapse: collapse !important">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>Event</th>
+                                            <th>Coordinator</th>
+                                            <th>Status</th>
+                                            <th>Budget</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="myTable">
+            
+                                        <tr>
+                                            <td><b>{{event.name}}</td></b>
+                                            <td><b>{{event.coordinator}}</td></b>
+                                            <td><b>{{event.status}}</td></b>
+                                            <td><b>{{event.totalMoney}}</td></b>
+                                        </tr>
+            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5>Sub Events Releted Some Information</h5>
+                                    </div>
+            
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-borderless datatable dataTable no-footer"
+                                    id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info"
+                                    style="border-collapse: collapse !important">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>SubCoordinator</th>
+                                            <th>Date</th>
+                                            <th>Budget</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="myTable">
+                                        {% for s in subevents %}
+                                        <tr>
+                                            <td><b>{{s.name}}</td></b>
+                                            <td><b>{{s.description}}</td></b>
+                                            <td><b>{{s.subcoordinator}}</td></b>
+                                            <td><b>{{s.eventDate}}</td></b>
+                                            <td><b>{{s.totalBudget}}</td></b>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5>Application</h5>
+                                    </div>
+            
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-borderless datatable dataTable no-footer"
+                                    id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info"
+                                    style="border-collapse: collapse !important">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>Volunteer</th>
+                                            <th>Participant</th>
+                                            <th>Audience</th>
+                                            <th>Payment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="myTable">
+            
+                                        <tr>
+                                            <td><b><a class="btn btn-success" href="{% url 'volunteer' %}">Fill Form</a></td></b>
+                                            <td><b><a class="btn btn-success" href="{% url 'participant' %}">Fill Form</a></td></b>
+                                            <td><b><a class="btn btn-success" href="{% url 'audience' %}">Fill Form</a></td></b>
+                                            <td><b><a class="btn btn-success" href="{% url 'payment' %}">Fill Form</a></td></b>
+                                        </tr>
+            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5>Information</h5>
+                                    </div>
+            
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-borderless datatable dataTable no-footer"
+                                    id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info"
+                                    style="border-collapse: collapse !important">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>UPI ID For Payment</th>
+                                            <th>Pass</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="myTable">
+            
+                                        <tr>
+                                            <td><b>{{event.upi}}</td></b>
+                                            <td><b><a class="btn btn-success" href="{% url 'generate-pass' event.id %}">Get Your Pass</a></td></b>
+                                        </tr>
+            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

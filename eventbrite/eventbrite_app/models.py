@@ -58,6 +58,7 @@ class Event(models.Model):
     description=models.TextField(null=False,blank=False)
     image=models.ImageField(upload_to='events')
     status=models.CharField(max_length=50,choices=STATUS,null=False,blank=False)
+    upi=models.CharField(max_length=100,blank=True,null=True)
     totalMoney=models.PositiveIntegerField(null=True,blank=True)
     createdAt=models.DateTimeField(auto_now_add=True)
     eventDate=models.DateTimeField(auto_now=True)
@@ -86,7 +87,9 @@ class SubEvent(models.Model):
     name=models.CharField(max_length=100,null=False,blank=False)
     description=models.TextField(null=False,blank=False)
     image=models.ImageField(upload_to='subevents')
-    money=models.PositiveIntegerField(null=True,blank=True)
+    totalBudget=models.PositiveIntegerField(null=True,blank=True)
+    utiliseBudget=models.PositiveIntegerField(null=True,blank=True)
+    balanceBudget=models.PositiveIntegerField(null=True,blank=True)
     createdAt=models.DateTimeField(auto_now_add=True)
     eventDate=models.DateTimeField(auto_now=True)
 
@@ -125,10 +128,28 @@ class Participant(models.Model):
     def __str__(self):
         return self.name
 
+class Audience(models.Model):
+    event=models.ForeignKey(Event,on_delete=models.CASCADE,null=False,blank=False)
+    name=models.CharField(max_length=50,null=False,blank=False)
+    branch=models.CharField(max_length=50,choices=BRANCH)
+    semester=models.CharField(max_length=50,choices=SEMESTER)
+    rollNumber=models.PositiveIntegerField(null=False,blank=False)
+    erp=models.PositiveBigIntegerField(null=False,blank=False)
+    isAudience=models.BooleanField(default=False,null=False,blank=False)
+    createdAt=models.DateTimeField(auto_now_add=True)
+    updatedAt=models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
+
 class Payment(models.Model):
+    from django.contrib.auth.models import User
     event=models.ForeignKey(Event,on_delete=models.CASCADE,null=False,blank=False)
     paymentRecieptImage=models.ImageField(upload_to='payment',null=False,blank=False)
     recieptNumber=models.CharField(max_length=10,null=False,blank=False)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     name=models.CharField(max_length=50,null=False,blank=False)
     branch=models.CharField(max_length=50,choices=BRANCH)
     semester=models.CharField(max_length=50,choices=SEMESTER)
@@ -157,3 +178,14 @@ class Memories(models.Model):
 
     def __str__(self):
         return self.event
+
+class Pass(models.Model):
+    name = models.CharField(max_length=100)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    date = models.DateField()
+    uuid = models.UUIDField(unique=True)
+    createdAt=models.DateTimeField(auto_now_add=True)
+    updatedAt=models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.name 
+    

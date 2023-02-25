@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% if payment %}
+<b>
+<h1>Pass for {{ pass.event.name }}</h1>
+<p>Name: {{ pass.name }}</p>
+<p>Date: {{ pass.date }}</p>
+<p>Pass ID: {{ pass.uuid }}</p>
+<a href="{% url 'generate-qr'%}" class="btn btn-large btn-primary" style="decoration:none;color:black;">Download Your QR Code For This Event</a></b>
+{% else %}
+<h1>You Have Not Done Payment</h1>
+{% endif %}
+{% endblock content%}

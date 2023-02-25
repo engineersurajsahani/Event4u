@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+	<!-- basic -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<!-- site metas -->
+	<title>Event4u</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- bootstrap css -->
+	<link rel="stylesheet" type="text/css" href="{% static 'home/css/bootstrap.min.css' %}">
+	<!-- style css -->
+	<link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
+	<!-- Responsive-->
+	<link rel="stylesheet" href="{% static 'home/css/responsive.css' %}">
+	<!-- Scrollbar Custom CSS -->
+	<link rel="stylesheet" href="{% static 'home/css/jquery.mCustomScrollbar.min.css' %}">
+	<!-- Tweaks for older IEs-->
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+		media="screen">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	
+</head>
+
+<body>
+	<header id="home" class="section">
+		<div class="header_main">
+			<!-- header inner -->
+			<div class="header">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+							<div class="full">
+								<div class="center-desk">
+									<div class="logo">
+										<!-- <a href="#home"><img src="{% static 'home/images/logo.png' %}"
+													style="max-width: 100%;">Event4u</a> -->
+										<h1 style="color:white;">EVENT4U</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+							<div class="menu-area">
+								<div class="limit-box">
+									<nav class="main-menu">
+										<ul class="menu-area-main">
+											<li><a href="{% url 'home' %}">Home</a></li>
+											{% if request.user.is_staff %}
+											<li><a href="{% url 'register' %}">Report</a></li>
+											{% else %}
+											<li><a href="{% url 'register' %}">Register</a></li>
+											<li><a href="{% url 'login' %}">Login</a></li>
+											{% endif %}
+										</ul>
+									</nav>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end header inner -->
+
+	</header>
+	<!-- banner end -->
+	<div>
+		<h3>Type something in the input field to search in the table</h3>
+		<input class="form-control" id="myInput" type="text" placeholder="Search..">
+		<br><br>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<div class="row">
+						<div class="col-md-5">
+							<h5>Events Report</h5>
+						</div>
+
+					</div>
+				</div>
+				<div class="card-body">
+					<table class="table table-borderless datatable dataTable no-footer"
+						id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info"
+						style="border-collapse: collapse !important">
+						<thead>
+							<tr role="row">
+								<th>ID</th>
+								<th>Name</th>
+								<th>Coordinator</th>
+								<th class='ctg_image'>Image</th>
+								<th>Status</th>
+								<th>Download</th>
+								<th>View PDF</th>
+							</tr>
+						</thead>
+						<tbody id="myTable">
+
+							<tr>
+								<td>{{ event.id }}</td>
+								<td>{{ event.name }}</td>
+								<td>{{ event.coordinator }}</td>
+								<td class="ctg_image"><img class="ctg_image" src="{{ event.image.url }}" alt="Image"
+										height="50px"></td>
+								<td>{{ event.status }}</td>
+								<td><b><a href="{% static 'eventreport.pdf' %}" style="color:black"
+											class="btn btn-success" download>Report</a></td></b>
+								<td><b><a href="{% static 'eventreport.pdf' %}" style="color:black"
+											class="btn btn-success" target="_blank">Report</a></td></b>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Javascript files-->
+	<script src="{% static 'home/js/jquery.min.js' %}"></script>
+	<script src="{% static 'home/js/popper.min.js' %}"></script>
+	<script src="{% static 'home/js/bootstrap.bundle.min.js' %}"></script>
+
+
+	<script src="{% static 'home/js/jquery-3.0.0.min.js' %}"></script>
+	<script src="{% static 'home/js/plugin.js' %}"></script>
+	<!-- sidebar -->
+	<script src="{% static 'home/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+	<script src="{% static 'home/js/custom.js' %}"></script>
+	<!-- javascript -->
+	<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js' %}"></script>
+	<script>
+		$(document).ready(function () {
+			$(".fancybox").fancybox({
+				openEffect: "none",
+				closeEffect: "none"
+			});
+
+			$(".zoom").hover(function () {
+
+				$(this).addClass('transition');
+			}, function () {
+
+				$(this).removeClass('transition');
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function () {
+			$("#myInput").on("keyup", function () {
+				var value = $(this).val().toLowerCase();
+				$("#myTable tr").filter(function () {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+		});
+	</script>
+
+</body>
+
+</html>

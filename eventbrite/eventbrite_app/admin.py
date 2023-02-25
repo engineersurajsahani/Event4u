@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Coordinator,Proposal,Event,SubCoordinator,SubEvent,Volunteer,Participant,Payment,Notification,Memories
-
+from .models import Coordinator,Proposal,Event,SubCoordinator,SubEvent,Volunteer,Participant,Payment,Notification,Memories,Audience,Pass
 # Register your models here.
 
 class CoordinatorAdmin(admin.ModelAdmin):
@@ -67,6 +66,16 @@ class ParticipantAdmin(admin.ModelAdmin):
 
 admin.site.register(Participant,ParticipantAdmin)
 
+class AudienceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'branch','semester','erp')
+    list_filter = ('event','branch','semester','createdAt')
+    search_fields = ['event','branch','semester','createdAt']
+
+    class Media:
+        js = ('https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js', 'js/script.js',)
+
+admin.site.register(Audience,AudienceAdmin)
+
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ('name', 'branch','semester','erp','recieptNumber')
     list_filter = ('event','branch','semester')
@@ -88,3 +97,12 @@ class MemoriesAdmin(admin.ModelAdmin):
 
 admin.site.register(Memories,MemoriesAdmin)
 
+class PassAdmin(admin.ModelAdmin):
+    list_display = ('name', 'event','date','uuid')
+    list_filter = ('name', 'event','date','uuid')
+    search_fields = ['name', 'event','date','uuid']
+
+    class Media:
+        js = ('https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js', 'js/script.js',)
+
+admin.site.register(Pass,PassAdmin)
