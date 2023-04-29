@@ -103,7 +103,7 @@
                                             <th>Name</th>
                                             <th>Description</th>
                                             <th>SubCoordinator</th>
-                                            <th>Date</th>
+                                            <th>Announce Date</th>
                                             <th>Budget</th>
                                         </tr>
                                     </thead>
@@ -111,7 +111,7 @@
                                         {% for s in subevents %}
                                         <tr>
                                             <td><b>{{s.name}}</td></b>
-                                            <td><b>{{s.description}}</td></b>
+                                            <td><b>{{s.description | safe}}</td></b>
                                             <td><b>{{s.subcoordinator}}</td></b>
                                             <td><b>{{s.eventDate}}</td></b>
                                             <td><b>{{s.totalBudget}}</td></b>

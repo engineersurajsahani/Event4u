@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 BRANCH = [
@@ -7,6 +7,11 @@ BRANCH = [
     ('AIML', 'AIML'),
     ('Data Science', 'Data Science'),
     ('IOT', 'IOT')
+]
+
+MODE_OF_PAYMENT = [
+    ('CASH', 'CASH'),
+    ('ONLINE', 'ONLINE')
 ]
 
 SEMESTER = [
@@ -27,6 +32,7 @@ STATUS = [
 ]
 
 class Coordinator(models.Model):
+    # username=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     name=models.CharField(max_length=50,null=False,blank=False)
     branch=models.CharField(max_length=50,choices=BRANCH)
     semester=models.CharField(max_length=50,choices=SEMESTER)
@@ -39,18 +45,19 @@ class Coordinator(models.Model):
         return self.name
 
 class Proposal(models.Model):
-    coordinator=models.ForeignKey(Coordinator,on_delete=models.CASCADE)
+    coordinator=models.ForeignKey(Coordinator,on_delete=models.CASCADE,null=False,blank=False)
     description=models.TextField(null=False,blank=False)
     feeApplicableForPerStudent=models.PositiveIntegerField(null=False,blank=False)
     fundRecieveFromCollege=models.PositiveIntegerField(null=False,blank=False)
-    hodApproval=models.BooleanField(default=False,null=False,blank=False)
-    adminApproval=models.BooleanField(default=False,null=False,blank=False)
+    Principal_Approval=models.BooleanField(default=False,null=False,blank=False)
+    Vice_Principal_Approval=models.BooleanField(default=False,null=False,blank=False)
+    HoD_Approval=models.BooleanField(default=False,null=False,blank=False)
     status=models.CharField(max_length=50,choices=STATUS,null=False,blank=False)
     createdAt=models.DateTimeField(auto_now_add=True)
     updatedAt=models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.coordinator
+        return self.status
 
 class Event(models.Model):
     coordinator=models.ForeignKey(Coordinator,on_delete=models.CASCADE,null=False,blank=False)
@@ -69,6 +76,7 @@ class Event(models.Model):
 class SubCoordinator(models.Model):
     coordinator=models.ForeignKey(Coordinator,on_delete=models.CASCADE,null=False,blank=False)
     event=models.ForeignKey(Event,on_delete=models.CASCADE,null=False,blank=False)
+    # username=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     name=models.CharField(max_length=50,null=False,blank=False)
     branch=models.CharField(max_length=50,choices=BRANCH)
     semester=models.CharField(max_length=50,choices=SEMESTER)
@@ -147,8 +155,8 @@ class Audience(models.Model):
 class Payment(models.Model):
     from django.contrib.auth.models import User
     event=models.ForeignKey(Event,on_delete=models.CASCADE,null=False,blank=False)
-    paymentRecieptImage=models.ImageField(upload_to='payment',null=False,blank=False)
-    recieptNumber=models.CharField(max_length=10,null=False,blank=False)
+    paymentRecieptImage=models.ImageField(upload_to='payment',null=True,blank=True)
+    recieptNumber=models.CharField(max_length=10,null=True,blank=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     name=models.CharField(max_length=50,null=False,blank=False)
     branch=models.CharField(max_length=50,choices=BRANCH)
@@ -157,6 +165,7 @@ class Payment(models.Model):
     erp=models.PositiveBigIntegerField(null=False,blank=False)
     whatsAppNumber=models.CharField(max_length=10,null=False,blank=False)
     mobileNumber=models.CharField(max_length=10,null=False,blank=False)
+    modeOfPayment=models.CharField(choices=MODE_OF_PAYMENT,default='CASH',max_length=100,null=True,blank=True)
     coordinatorCheck=models.BooleanField(default=False,null=False,blank=False)
 
     def __str__(self):
@@ -167,7 +176,7 @@ class Notification(models.Model):
     description=models.TextField(null=False,blank=False)
 
     def __str__(self):
-        return self.event
+        return self.description
 
 class Memories(models.Model):
     event=models.ForeignKey(Event,on_delete=models.CASCADE,null=False,blank=False)

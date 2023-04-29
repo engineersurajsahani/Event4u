@@ -37,7 +37,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview menu-open">
+          {% comment %} <li class="nav-item has-treeview menu-open">
             <a href="{% url 'home' %}" class="nav-link text-light">
               <i class="nav-icon fas fa-folder"></i>
               <p>
@@ -45,13 +45,22 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          </li>
+          </li> {% endcomment %}
           {% if user.is_authenticated %}
           <li class="nav-item has-treeview menu-open">
-            <a href="{% url 'logout' %}" class="nav-link text-light">
+            <a href="{% url 'profile' %}" class="nav-link text-light">
               <i class="nav-icon fa-solid fa-user"></i>
               <p>
                 Profile
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="{% url 'notification' %}" class="nav-link text-light">
+              <i class="nav-icon fa-solid fa-user"></i>
+              <p>
+                Notification
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

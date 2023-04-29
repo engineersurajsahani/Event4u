@@ -26,17 +26,26 @@
 		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
 			media="screen">
+			<style>
+				/* Set background image */
+				body {
+				  background-image: url("{% static 'image/party.jpg' %}");
+				  background-repeat: no-repeat;
+				  background-size: 100vw 100vh;
+				}
+			  </style>
+			  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha384-ETo6vO+Q89F1/FyPKxGz8FvY9xy3Kq3oqfMcwM8zlxy6I7b2KjRfLBl4Q4eY6lXH" crossorigin="anonymous">
 
 	</head>
 
 	<body>
 		<header id="home" class="section">
-			<div class="header_main">
+			<div >
 				<!-- header inner -->
 				<div class="header">
 					<div class="container">
 						<div class="row">
-							<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+							<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col">
 								<div class="full">
 									<div class="center-desk">
 										<div class="logo">
@@ -53,15 +62,14 @@
 										<nav class="main-menu">
 											<ul class="menu-area-main">
 												<li><a href="#home">Home</a></li>
-												<li><a href="#about">About</a></li>
-												<li><a href="#service">Features</a></li>
+												
 												{% if request.user.is_staff %}
 												<li><a href="{% url 'report' %}">Report</a></li>
 												{% else %}
 												<li><a href="{% url 'register' %}">Register</a></li>
 												<li><a href="{% url 'login' %}">Login</a></li>
 												{% endif %}
-												<li><a href="#contact">Contact Us</a></li>
+												
 											</ul>
 										</nav>
 									</div>
@@ -70,340 +78,19 @@
 						</div>
 					</div>
 				</div>
-				<!-- end header inner -->
-				<section>
-					<div class="bannen_inner">
-						<div class="container">
-							<div class="row marginii">
-								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-									<div class="taital_main">
-
-									</div>
-									<h1 class="web_text"><strong>Unlimited Enjoyment</strong></h1>
-									<p class="donec_text">"Make your next event unforgettable with our seamless event
-										management system!"</p>
-									<a class="get_bg" href="{% url 'register' %}" role="button">Register</a>
-									<a class="btn btn-lg btn-dark" href="{% url 'login' %}" role="button">Login</a>
-								</div>
-								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-									<div class="img-box">
-										<figure><img src="{% static 'home/images/woofer.png' %}" alt="img" /
-												style="max-width: 100%;"></figure>
-									</div>
-								</div>
-							</div>
-							<!-- <div class="emaim-bt">
-								<div class="col-md-9 margin-0">
-									<div class="input-group mb-3 margin-top-20">
-										<input type="text" class="form-control" placeholder="Enter domain name here">
-										<div class="input-group-append">
-											<button class="search_bt" type="Subscribe"><a href="#">Search</a></button>
-										</div>
-									</div>
-								</div>
-							</div> -->
-						</div>
-					</div>
-				</section>
+			</div>
 		</header>
-		<!-- banner end -->
-		<!-- choose start -->
-		<div id="about" class="choose_section">
-			<div class="container">
-				<div class="col-sm-12">
-					<h1 class="choose_text">Why you should <span class="color">choose us</span></h1>
-					<p class="lorem_text">"A successful event is one where everyone leaves with a smile on their face
-						and a lifetime of memories." </p>
-				</div>
-			</div>
-		</div>
-		<div class="choose_section_2">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="power_full">
-							<!-- <div class="icon"><a href="#"><img src="{% static 'home/images/power-full-icon.png' %}"></a>
-							</div> -->
-							<h2 class="powerful_text">"An enjoyable event is not just about what happens, but about how it
-								makes people feel."</h2>
-							<!-- <p class="making_tetx">"An enjoyable event is not just about what happens, but about how it
-								makes people feel." </p> -->
-						</div>
-						<div class="btn_main">
-							<button type="button" class="read_bt"><a href="{% url 'login' %}">Read More</a></button>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="power">
-							<!-- <div class="icon"><a href="#"><img src="{% static 'home/images/optimised-icon.png' %}"></a>
-							</div> -->
-							<h2 class="totaly_text">"The best events are the ones where you lose track of time because you're
-								having too much fun."</h2>
-							<!-- <p class="making">"The best events are the ones where you lose track of time because you're
-								having too much fun." </p> -->
-						</div>
-						<div class="btn_main">
-							<button type="button" class="read_bt"><a href="{% url 'login' %}">Read More</a></button>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="power">
-							<!-- <div class="icon"><a href="#"><img src="{% static 'home/images/headfone-icon.png' %}"></a>
-							</div> -->
-							<h2 class="totaly_text">"Life is meant to be celebrated, and an enjoyable event is the perfect way
-								to do just that."</h2>
-							<!-- <p class="making">"Life is meant to be celebrated, and an enjoyable event is the perfect way
-								to do just that."</p> -->
-						</div>
-						<div class="btn_main">
-							<button type="button" role="button" class="read_bt"><a href="{% url 'login' %}">Read More</a></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- choose start -->
-		<!-- about start -->
-		<div class="about_main layout_padding">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="images">
-							<img src="{% static 'home/images/img-1.png' %}" style="max-width: 100%;">
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="right_section_main">
-							<h1 class="dolar_tetx"><strong style="color: #2ba879;">Event4u</strong></h1>
-							<h2 class="special_text">Event4u
-							</h2>
-							<p class="donec_text">
-								"The most enjoyable events are the ones that bring people together and create lasting
-								connections."
-							</p>
-							<div class="right_aero"><img src="{% static 'home/images/right-aerow.png' %}"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- about end -->
-		<!-- service start -->
-		<div id="service" class="choose_section">
-			<div class="container">
-				<div class="col-sm-12">
-					<h1 class="choose_text">Our<span class="color">Features</span></h1>
-					<p class="lorem_text">"The most enjoyable events are the ones that bring people together and create lasting connections." </p>
-				</div>
-			</div>
-		</div>
-		<div class="choose_section_2">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="dedicated">
-							<!-- <div class="icon"><a href="#"><img src="{% static 'home/images/icon-2.png' %}"></a></div> -->
-							<h2 class="hosting_text">Online event registration and ticketing</h2>
-							<p class="justo_text">Online event registration and ticketing</p>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="dedicated">
-							<!-- <div class="icon"><a href="#"><img src="{% static 'home/images/icon-2.png' %}"></a></div> -->
-							<h2 class="hosting_text">Marketing and promotion tools</h2>
-							<p class="justo_text">Marketing and promotion tools</p>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="dedicated">
-							<!-- <div class="icon"><a href="#"><img src="{% static 'home/images/icon-2.png' %}"></a></div> -->
-							<h2 class="hosting_text">Payment processing and financial management</h2>
-							<p class="justo_text">Payment processing and financial management</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="choose_section_2">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="dedicated">
-							<!-- <div class="icon"><a href="#"><img src="{% static 'home/images/icon-2.png' %}"></a></div> -->
-							<h2 class="hosting_text">Attendee management and engagement tools</h2>
-							<p class="justo_text">Attendee management and engagement tools</p>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="dedicated">
-							<!-- <div class="icon"><a href="#"><img src="{% static 'home/images/icon-2.png' %}"></a></div> -->
-							<h2 class="hosting_text">Analytics and reporting</h2>
-							<p class="justo_text">Analytics and reporting</p>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="dedicated">
-							<!-- <div class="icon"><a href="#"><img src="{% static 'home/images/icon-2.png' %}"></a></div> -->
-							<h2 class="hosting_text">Integrations with other tools and software</h2>
-							<p class="justo_text">Integrations with other tools and software</p>
-						</div>
-					</div>
-				</div>
-				<div class="bt_main">
-					<button class="read_more"><a href="{% url 'login' %}">Read More</a></button>
-				</div>
-			</div>
-		</div>
-
-		<!-- service end -->
-		<!-- contact start -->
-		<div id="contact" class="contact_section">
-			<div class="container">
-				<div class="col-sm-12">
-					<h1 class="choose_text">Contact Us</h1>
-					<p class="lorem_text">"An enjoyable event is not just about what happens, but about how it makes people feel." </p>
-				</div>
-			</div>
-		</div>
-		<div class="contact_section_2">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="input_main">
-							<div class="container">
-								<form action="/action_page.php">
-									<div class="form-group">
-										<input type="text" class="email-bt" placeholder="Name" name="Name">
-									</div>
-									<div class="form-group">
-										<input type="text" class="email-bt" placeholder="Email" name="Email">
-									</div>
-									<div class="form-group">
-										<input type="text" class="email-bt" placeholder="Phone" name="Email">
-									</div>
-									<div class="form-group">
-										<textarea class="massage-bt" placeholder="Massage" rows="5" id="comment"
-											name="text"></textarea>
-									</div>
-								</form>
-
-							</div>
-							<div class="send_btn">
-								<button type="button" class="main_bt"><a href="#">Send</a></button>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="section_right">
-							<img src="{% static 'home/images/img-2.png' %}" style="max-width: 100%;">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="contact_section_3">
-			<div class="container">
-				<div class="contact_taital">
-					<div class="row web">
-						<div class="col-sm-12 col-md-12 col-lg-4">
-							<div class="map_main">
-								<img src="{% static 'home/images/map-icon.png' %}">
-								<span class="londan_text">Lokmanya Tilak College Of Engineering</span>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-6 col-lg-4">
-							<div class="map_main">
-								<img src="{% static 'home/images/phone-icon.png' %}">
-								<span class="londan_text">+1234567890</span>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-6 col-lg-4">
-							<div class="map_main">
-								<img src="{% static 'home/images/email-icon.png' %}">
-								<span class="londan_text">ltcoe@gmail.com</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- <div class="contact_product">
-					<div class="row">
-						<div class="col-sm-6 col-md-6 col-lg-2">
-							<div class="footer-logo"><img src="{% static 'home/images/footer-logo.png' %}"
-									style="max-width: 100%;"></div>
-						</div>
-						<div class="col-sm-6 col-md-6 col-lg-4">
-							<h1 class="useful_text">USEFUL LINK</h1>
-							<div class="menu">
-								<ul>
-									<li><a href="#home"><img src="{% static 'home/images/bulit-icon.png' %}"
-												style="padding-right: 10px;">Home</a></li>
-									<li><a href="#about"><img src="{% static 'home/images/bulit-icon.png' %}"
-												style="padding-right: 10px;">About</a></li>
-									<li><a href="#service"><img src="{% static 'home/images/bulit-icon.png' %}"
-												style="padding-right: 10px;">Services</a></li>
-									<li><a href="#contact"><img src="{% static 'home/images/bulit-icon.png' %}"
-												style="padding-right: 10px;">Contact Us</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-sm-12 col-md-12 col-lg-6">
-							<h1 class="useful_text">PRODUCT</h1>
-							<div class="menu multi_column_menu">
-								<ul>
-									<li class="footer_menu"><a href="#"><img
-												src="{% static 'home/images/bulit-icon.png' %}"
-												class="footer_menu">Webhosting</a></li>
-									<li class="footer_menu"><a href="#"><img
-												src="{% static 'home/images/bulit-icon.png' %}"
-												class="footer_menu">Reseler Hosting</a></li>
-									<li class="footer_menu"><a href="#"><img
-												src="{% static 'home/images/bulit-icon.png' %}" class="footer_menu">VPS
-											Hosting</a></li>
-									<li class="footer_menu"><a href="#"><img
-												src="{% static 'home/images/bulit-icon.png' %}"
-												class="footer_menu">Wordpress Hosting</a></li>
-									<li class="footer_menu"><a href="#"><img
-												src="{% static 'home/images/bulit-icon.png' %}"
-												class="footer_menu">Dedicated hosting</a></li>
-									<li class="footer_menu"><a href="#"><img
-												src="{% static 'home/images/bulit-icon.png' %}"
-												class="footer_menu">Windows</a></li>
-								</ul>
-							</div>
-							<div class="input-group mb-3 margin-top-30">
-								<input type="text" class="form-control" placeholder="Enter you email">
-								<div class="input-group-append">
-									<button class="subsrcibe_bt" type="Subscribe"><a href="#">SUBSCRIBE</a></button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
-				<div class="icon_main">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="menu_text">
-								<ul>
-									<li><a href="{% url 'login' %}"><img src="{% static 'home/images/fb-icon.png' %}"></a></li>
-									<li><a href="{% url 'login' %}"><img src="{% static 'home/images/twitter-icon.png' %}"></a></li>
-									<li><a href="{% url 'login' %}"><img src="{% static 'home/images/in-icon.png' %}"></a></li>
-									<li><a href="{% url 'login' %}"><img src="{% static 'home/images/google-icon.png' %}"></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="copyright_main">
-			<div class="container">
-				<p class="copy_text">© 2023 All Rights Reserved. <a href="https://html.design">LTCoE Students</a></p>
-			</div>
-		</div>
+				<!-- end header inner -->
 
 
-		<!-- contact end -->
+				<div class='container text-light' style='color:white;'>
+					<h1 style='color:white; margin-top:60px;margin-left:100px;'> Lokmanya Tilak College Of Engineering</h1>
+					{% comment %} <h1 style='color:green; margin-top:50px;margin-left:400px;'> Team Members </h1>
+					<h1 style='color:green; margin-left:400px;'> Advait Chandorkar</h1>
+					<h1 style='color:green; margin-left:400px;'> Anjali Gupta</h1>
+					<h1 style='color:green; margin-left:400px;'> Shraddha Yadav</h1>
+					<h1 style='color:green; margin-left:400px;'> Suraj Sahani</h1> {% endcomment %}
+				</div>
 		<!-- Javascript files-->
 		<script src="{% static 'home/js/jquery.min.js' %}"></script>
 		<script src="{% static 'home/js/popper.min.js' %}"></script>

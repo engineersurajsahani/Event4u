@@ -10,9 +10,9 @@ class CoordinatorAdmin(admin.ModelAdmin):
 admin.site.register(Coordinator,CoordinatorAdmin)
 
 class ProposalAdmin(admin.ModelAdmin):
-    list_display = ('hodApproval', 'adminApproval', 'status')
-    list_filter = ('coordinator','status','createdAt')
-    search_fields = ['coordinator','status','createdAt']
+    list_display = ('Principal_Approval', 'Vice_Principal_Approval','HoD_Approval', 'status')
+    list_filter = ('status','createdAt')
+    search_fields = ['status','createdAt']
 
     class Media:
         js = ('https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js', 'js/script.js',)
@@ -77,11 +77,11 @@ class AudienceAdmin(admin.ModelAdmin):
 admin.site.register(Audience,AudienceAdmin)
 
 class PaymentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'branch','semester','erp','recieptNumber')
+    list_display = ('name', 'branch','semester','erp','event')
     list_filter = ('event','branch','semester')
     search_fields = ['event','branch','semester']
 
-admin.site.register(Payment)
+admin.site.register(Payment,PaymentAdmin)
 
 class NotificationAdmin(admin.ModelAdmin):
 
