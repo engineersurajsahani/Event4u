@@ -158,7 +158,7 @@ def pdf_generator(event_name,event_date,cname,branch,erp,students,participants,v
     from reportlab.lib import colors
 
     # Create a new PDF object
-    pdf = SimpleDocTemplate("C://Users//Shraddha//Documents//eventbrite//eventbrite//eventbrite_app//static//eventreport.pdf", pagesize=letter)
+    pdf = SimpleDocTemplate("C://GitHub//Django Projects//Eventbrite//eventbrite//static//eventreport.pdf", pagesize=letter)
 
     # Define the styles for the document
     styles = getSampleStyleSheet()
@@ -181,7 +181,7 @@ def pdf_generator(event_name,event_date,cname,branch,erp,students,participants,v
     # Add content to the PDF
 
     story = []
-    logo = Image("C://Users//Shraddha//Documents//eventbrite//eventbrite//eventbrite_app//ltcoe.png", width=2*inch, height=2*inch)  # Replace "logo.png" with your logo file name
+    logo = Image("C://GitHub//Django Projects//Eventbrite//eventbrite//eventbrite_app//ltcoe.png", width=2*inch, height=2*inch)  # Replace "logo.png" with your logo file name
     story.append(logo)
     story.append(Paragraph(title, title_style))
     story.append(Spacer(1, 0.2 * inch))
