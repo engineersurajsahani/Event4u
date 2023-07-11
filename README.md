@@ -1,2 +1,2 @@
-# Eventbrite
- Smart Event Manager Django Project
+# Event4u
+ Smart Event Manager Django Web Application Project
